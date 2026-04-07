@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wedding Invitation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    background: url('lavender background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.invitation {
+    width: 360px;
+    background: white;
+    border: 2px solid #d8c4e8;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.header {
+    font-size: 18px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    color: #7a5c8f;
+}
+
+.photo-frame {
+    border: 6px solid #d8c4e8;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 15px;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #7a5c8f;
+    margin: 10px 0;
+}
+
+.date {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #444;
+}
+
+.date strong {
+    font-size: 28px;
+    display: block;
+}
+
+.location {
+    font-size: 14px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.divider {
+    width: 80%;
+    height: 1px;
+    background: #ddd;
+    margin: 10px auto;
+}
+
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.qr-block {
+    text-align: center;
+}
+
+.footer {
+    font-size: 12px;
+    color: #888;
+}
+
+/* 🎥 VIDEO BUTTON */
+.video-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #7a5c8f;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.video-btn:hover {
+    background: #5e4370;
+}
+
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.video-modal video {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .invitation {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="invitation">
+    <div class="header">SAVE THE DATE</div>
+
+    <div class="photo-frame">
+        <img src="8T1A7432.JPG" alt="Couple">
+    </div>
+
+    <div class="names">Clifford & Danica</div>
+
+    <div class="date">
+        APRIL
+        <strong>24</strong>
+        2026 • 2:00 PM
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="location">
+        Nueno Ave, Imus<br>
+        Cavite 4103
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- VIDEO BUTTON -->
+    <button class="video-btn" onclick="openVideo()">
+        ▶ Click here to watch other details for wedding.
+    </button>
+
+    <!-- QR Codes -->
+    <div class="footer-section">
+        <div class="qr-block">
+            <div class="footer">Church</div>
+            <div id="qrcode-church"></div>
+        </div>
+
+        <div class="qr-block">
+            <div class="footer">Reception</div>
+            <div id="qrcode-reception"></div>
+        </div>
+    </div>
+</div>
+
+<!--  VIDEO MODAL -->
+<div id="videoModal" class="video-modal">
+    <span class="close-btn" onclick="closeVideo()">&times;</span>
+    <video id="weddingVideo" controls>
+        <source src="wedding-invitation.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+
+// QR Codes
+new QRCode(document.getElementById("qrcode-church"), {
+    text: "https://maps.app.goo.gl/zTHCgzHUVJ7V9vrU9",
+    width: 100,
+    height: 100
+});
+
+new QRCode(document.getElementById("qrcode-reception"), {
+    text: "https://maps.app.goo.gl/imtYe5nSNPUX8CHK9",
+    width: 100,
+    height: 100
+});
+
+// Video controls
+function openVideo() {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("weddingVideo");
+
+    modal.style.display = "flex";
+    video.play(); 
+}
+
+function closeVideo() {
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("weddingVideo");
+
+    modal.style.display = "none";
+    video.pause();       
+    video.currentTime = 0;
+}
+</script>
+
+</body>
+</html>
